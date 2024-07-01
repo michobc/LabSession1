@@ -31,3 +31,4 @@
 /Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/obj/Debug/net8.0/LabSession1.pdb
 /Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/obj/Debug/net8.0/LabSession1.genruntimeconfig.cache
 /Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/obj/Debug/net8.0/ref/LabSession1.dll
+/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/bin/Debug/net8.0/LabSession1.staticwebassets.runtime.json

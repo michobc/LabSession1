@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "aJU9RJZdZAlcX/s6Z8yf95tIa7NhVZg9AJUGx3P9Tdg=",
+  "Hash": "SK0P+cN0FldhfjOZkFUwwCnpvhYoFcgfIbpj3P0nv+Y=",
   "Source": "LabSession1",
   "BasePath": "_content/LabSession1",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LabSession1/wwwroot",
+      "Source": "LabSession1",
+      "ContentRoot": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/",
+      "BasePath": "_content/LabSession1",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

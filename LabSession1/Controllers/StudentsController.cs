@@ -44,10 +44,42 @@ public class StudentsController : ControllerBase
     }
     
     [HttpPost("update")]
-    public void UpdateStudentName([FromQuery] long id, [FromQuery] string name, [FromQuery] string email)
+    public ActionResult UpdateStudentName([FromBody] Student request)
+    {
+        var student = students.Find(s => s.id == request.id);
+        if (student == null)
+        {
+            return NotFound();
+        }
+        student.name = request.name;
+        student.email = request.email;
+        return Ok(student);
+    }
+    // in progress
+    [HttpPost("upload")]
+    public async Task<ActionResult> UploadImage([FromForm] IFormFile image)
+    {
+        if (image.Length == 0)
+        {
+            return BadRequest("Image is required.");
+        }
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", image.FileName);
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await image.CopyToAsync(stream);
+        }
+        return Ok(new { path = $"images/{image.FileName}" });
+    }
+    
+    [HttpDelete("deleteStudent/{id}")]
+    public ActionResult DeleteStudent(long id)
     {
         var student = students.Find(s => s.id == id);
-        student.name = name;
-        student.email = email;
+        if (student == null)
+        {
+            return NotFound();
+        }
+        students.Remove(student);
+        return NoContent();
     }
 }

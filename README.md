@@ -17,5 +17,18 @@ create web api
 ## step 6
 - filter the students
 
-![gets.png](/Users/michelbouchahine/Desktop/gets.png)
+## step 7
+get the current date using CultureInfo method of System.Globalization and by getting the accept-language from the header
+
+![gets.png](./images/gets.png)
+
+## step 8
+using the body having the id and name we update the student with the specified ID
+
+## step 9
+upload an image
+
+## step 10 
+delete student from list
+
 
