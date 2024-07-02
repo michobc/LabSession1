@@ -38,3 +38,14 @@ delete student from list
 - 
 ## exception handling
 - edit each endpoint the student controller
+
+## dependency injection
+- created IStudentService interface
+- implemented StudentService class that extends IStudentService interface
+- injected it in the Student controller by defining a IStudentService instance and a constructor
+then used it in each endpoint to call the function created in the StudentService
+
+- in the Program.cs file -> we should register the service by adding this line
+  builder.Services.AddScoped<IStudentService, StudentService>();
+- i chose scoped type because it is user specific scope, instances will be created 
+once per user and be shared across all the requests.

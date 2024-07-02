@@ -1,5 +1,6 @@
 using System.Globalization;
 using LabSession1.Models;
+using LabSession1.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace LabSession1.Controllers;
 
@@ -7,43 +8,28 @@ namespace LabSession1.Controllers;
 [Route("[controller]")]
 public class StudentsController : ControllerBase
 {
-    private static List<Student> students = new List<Student> 
+    private readonly IStudentService _studentService;
+    public StudentsController(IStudentService studentService)
     {
-        new Student{id = 211211, name = "Mario", email = "mario@inmind.lb"},
-        new Student{id = 122334, name = "kevin", email = "kevin@inmind.lb"},
-        new Student{id = 233445, name = "Joe", email = "joe@inmind.lb"},
-        new Student{id = 344556, name = "Roudy", email = "roudy@inmind.lb"}
-    };
+        _studentService = studentService;
+    }
     
     [HttpGet("getAllStudents")]
     public List<Student> GetAll() 
     {
-        return students;
+        return _studentService.GetAll();
     }
 
     [HttpGet("getStudentByID/{id}")]
     public Student GetByID(long id)
     {
-        if (id <= 0)
-        {
-            throw new ArgumentException("Invalid ID");
-        }
-        var student = students.Find(s => s.id == id);
-        if (student == null)
-        {
-            throw new ArgumentException("no student with this id");
-        }
-        return student;
+        return _studentService.GetByID(id);
     }
 
     [HttpGet("getStudentFilter/{name}")]
     public List<Student> GetFiltered(string name)
     {
-        if (string.IsNullOrEmpty(name))
-        {
-            throw new ArgumentException("Name cannot be null or empty");
-        }
-        return students.FindAll(s => s.name.Contains(name, StringComparison.OrdinalIgnoreCase));
+        return _studentService.GetFiltered(name);
     }
 
     [HttpGet("getCurrentDate")]
@@ -51,63 +37,50 @@ public class StudentsController : ControllerBase
     {
         var cultureHeader = HttpContext.Request.Headers["Accept-Language"].ToString();
         // here i splited the accept-language in the header by the comma to take the first part that contains en-EN etc.
-        var culture = cultureHeader.Split(',').FirstOrDefault(); 
-        try
-        {
-            var currentDate = DateTime.Now.ToString(new CultureInfo(culture));
-            return currentDate;
-        }
-        catch (CultureNotFoundException)
-        {
-            throw new ArgumentException("Invalid culture identifier");
-        }
+        var culture = cultureHeader.Split(',').FirstOrDefault();
+        return _studentService.GetDate(culture);
     }
     
     [HttpPost("update")]
     public ActionResult UpdateStudentName([FromBody] Student request)
     {
-        if (request.id <= 0 || string.IsNullOrEmpty(request.name) || string.IsNullOrEmpty(request.email))
+        try
         {
-            throw new ArgumentException("Invalid request data");
+            _studentService.UpdateStudentName(request);
         }
-        var student = students.Find(s => s.id == request.id);
-        if (student == null)
+        catch (ArgumentException e)
         {
-            return NotFound();
+            return BadRequest(e.Message);
         }
-        student.name = request.name;
-        student.email = request.email;
-        return Ok(student);
+        catch (KeyNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        return Ok();
     }
-    // in progress
+    
+
     [HttpPost("upload")]
-    public async Task<ActionResult> UploadImage([FromForm] IFormFile image)
+    public Task<string> UploadImage([FromForm] IFormFile image)
     {
-        if (image.Length == 0)
-        {
-            return BadRequest("Image is required.");
-        }
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", image.FileName);
-        using (var stream = new FileStream(filePath, FileMode.Create))
-        {
-            await image.CopyToAsync(stream);
-        }
-        return Ok(new { path = $"images/{image.FileName}" });
+        return _studentService.UploadImage(image);
     }
     
     [HttpDelete("deleteStudent/{id}")]
     public ActionResult DeleteStudent(long id)
     {
-        if (id <= 0)
+        try
         {
-            throw new ArgumentException("Invalid ID");
+            _studentService.DeleteStudent(id);
         }
-        var student = students.Find(s => s.id == id);
-        if (student == null)
+        catch (ArgumentException e)
         {
-            return NotFound();
+            return BadRequest(e.Message);
         }
-        students.Remove(student);
-        return NoContent();
+        catch (KeyNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        return Ok();
     }
 }
