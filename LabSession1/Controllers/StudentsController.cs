@@ -24,12 +24,25 @@ public class StudentsController : ControllerBase
     [HttpGet("getStudentByID/{id}")]
     public Student GetByID(long id)
     {
-        return students.Find(s => s.id == id);
+        if (id <= 0)
+        {
+            throw new ArgumentException("Invalid ID");
+        }
+        var student = students.Find(s => s.id == id);
+        if (student == null)
+        {
+            throw new ArgumentException("no student with this id");
+        }
+        return student;
     }
 
     [HttpGet("getStudentFilter/{name}")]
     public List<Student> GetFiltered(string name)
     {
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new ArgumentException("Name cannot be null or empty");
+        }
         return students.FindAll(s => s.name.Contains(name, StringComparison.OrdinalIgnoreCase));
     }
 
@@ -39,13 +52,24 @@ public class StudentsController : ControllerBase
         var cultureHeader = HttpContext.Request.Headers["Accept-Language"].ToString();
         // here i splited the accept-language in the header by the comma to take the first part that contains en-EN etc.
         var culture = cultureHeader.Split(',').FirstOrDefault(); 
-        var currentDate = DateTime.Now.ToString(new CultureInfo(culture));
-        return currentDate;
+        try
+        {
+            var currentDate = DateTime.Now.ToString(new CultureInfo(culture));
+            return currentDate;
+        }
+        catch (CultureNotFoundException)
+        {
+            throw new ArgumentException("Invalid culture identifier");
+        }
     }
     
     [HttpPost("update")]
     public ActionResult UpdateStudentName([FromBody] Student request)
     {
+        if (request.id <= 0 || string.IsNullOrEmpty(request.name) || string.IsNullOrEmpty(request.email))
+        {
+            throw new ArgumentException("Invalid request data");
+        }
         var student = students.Find(s => s.id == request.id);
         if (student == null)
         {
@@ -74,6 +98,10 @@ public class StudentsController : ControllerBase
     [HttpDelete("deleteStudent/{id}")]
     public ActionResult DeleteStudent(long id)
     {
+        if (id <= 0)
+        {
+            throw new ArgumentException("Invalid ID");
+        }
         var student = students.Find(s => s.id == id);
         if (student == null)
         {

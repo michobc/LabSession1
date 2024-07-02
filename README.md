@@ -31,4 +31,10 @@ upload an image
 ## step 10 
 delete student from list
 
+![all.png](./images/all.png)
 
+## input validation 
+- add required field in the student model
+- 
+## exception handling
+- edit each endpoint the student controller
