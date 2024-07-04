@@ -69,23 +69,15 @@ public class StudentService : IStudentService
         student.email = request.email;
     }
     
-    // in progress
     public async Task<string> UploadImage(Image image)
     {
         if (image == null)
         {
             throw new ArgumentException("Image is required.");
         }
-
         var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
-        if (!Directory.Exists(uploadDirectory))
-        {
-            Directory.CreateDirectory(uploadDirectory);
-        }
-
         var fileName = Path.GetFileName(image.file.FileName);
         var filePath = Path.Combine(uploadDirectory, fileName);
-
         try
         {
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -97,7 +89,6 @@ public class StudentService : IStudentService
         {
             throw new Exception($"Error uploading file: {fileName}. {ex.Message}");
         }
-
         return $"images/{fileName}";
     }
     
