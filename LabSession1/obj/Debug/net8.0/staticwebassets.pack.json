@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/FLES_1erjuillet.docx",
+      "PackagePath": "staticwebassets/images/FLES_1erjuillet.docx"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.LabSession1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.LabSession1.props",
+      "PackagePath": "build\\LabSession1.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.LabSession1.props",
+      "PackagePath": "buildMultiTargeting\\LabSession1.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.LabSession1.props",
+      "PackagePath": "buildTransitive\\LabSession1.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

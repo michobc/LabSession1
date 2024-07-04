@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SK0P+cN0FldhfjOZkFUwwCnpvhYoFcgfIbpj3P0nv+Y=",
+  "Hash": "XvfY4o309dhUAOph4xhzMBb5lNQN1cc+1pgrK/u6KV0=",
   "Source": "LabSession1",
   "BasePath": "_content/LabSession1",
   "Mode": "Default",
@@ -15,5 +15,25 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/FLES_1erjuillet.docx",
+      "SourceId": "LabSession1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/",
+      "BasePath": "_content/LabSession1",
+      "RelativePath": "images/FLES_1erjuillet.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/FLES_1erjuillet.docx"
+    }
+  ]
 }
