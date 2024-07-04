@@ -54,7 +54,7 @@ public class StudentService : IStudentService
         }
     }
     
-    public void UpdateStudentName([FromBody] Student request)
+    public void UpdateStudentName(Student request)
     {
         if (request.id <= 0 || string.IsNullOrEmpty(request.name) || string.IsNullOrEmpty(request.email))
         {
@@ -70,9 +70,9 @@ public class StudentService : IStudentService
     }
     
     // in progress
-    public async Task<string> UploadImage([FromForm] IFormFile image)
+    public async Task<string> UploadImage(Image image)
     {
-        if (image == null || image.Length == 0)
+        if (image == null)
         {
             throw new ArgumentException("Image is required.");
         }
@@ -83,14 +83,14 @@ public class StudentService : IStudentService
             Directory.CreateDirectory(uploadDirectory);
         }
 
-        var fileName = Path.GetFileName(image.FileName);
+        var fileName = Path.GetFileName(image.file.FileName);
         var filePath = Path.Combine(uploadDirectory, fileName);
 
         try
         {
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await image.CopyToAsync(stream);
+                await image.file.CopyToAsync(stream);
             }
         }
         catch (Exception ex)

@@ -26,7 +26,7 @@ get the current date using CultureInfo method of System.Globalization and by get
 using the body having the id and name we update the student with the specified ID
 
 ## step 9
-upload an image
+upload an image: created an image model that takes IFormFile file as argument and a name, and added it as parameter in the upload endpoint
 
 ## step 10 
 delete student from list
@@ -35,7 +35,7 @@ delete student from list
 
 ## input validation 
 - add required field in the student model
-- 
+
 ## exception handling
 - edit each endpoint the student controller
 

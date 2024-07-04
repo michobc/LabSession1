@@ -11,8 +11,8 @@ public interface IStudentService
     List<Student> GetFiltered(string name);
     string GetDate(string culture);
     // POST REQUESTS
-    void UpdateStudentName([FromBody] Student request);
-    Task<string> UploadImage([FromForm] IFormFile image);
+    void UpdateStudentName(Student request);
+    Task<string> UploadImage(Image image);
     // DELETE
     void DeleteStudent(long id);
 }

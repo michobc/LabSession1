@@ -61,7 +61,7 @@ public class StudentsController : ControllerBase
     
 
     [HttpPost("upload")]
-    public Task<string> UploadImage([FromForm] IFormFile image)
+    public Task<string> UploadImage([FromForm] Image image)
     {
         return _studentService.UploadImage(image);
     }
