@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XvfY4o309dhUAOph4xhzMBb5lNQN1cc+1pgrK/u6KV0=",
+  "Hash": "YZ9w0zqOtu6ZydwHcKWaLvIWW8mmzD8OwZdmO7Swwtg=",
   "Source": "LabSession1",
   "BasePath": "_content/LabSession1",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/2020-2021 GIC - Diagramme des prérequis - 20230731.pdf",
+      "SourceId": "LabSession1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/",
+      "BasePath": "_content/LabSession1",
+      "RelativePath": "images/2020-2021 GIC - Diagramme des prérequis - 20230731.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/2020-2021 GIC - Diagramme des prérequis - 20230731.pdf"
+    },
     {
       "Identity": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/FLES_1erjuillet.docx",
       "SourceId": "LabSession1",

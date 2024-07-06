@@ -1,7 +1,10 @@
 using System.Globalization;
+using FluentValidation.Results;
+using LabSession1.FluentValidators;
 using LabSession1.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace LabSession1.Services;
+//TODO: Check Fluent Validation
 
 public class StudentService : IStudentService
 {
@@ -20,7 +23,10 @@ public class StudentService : IStudentService
     
     public Student GetByID(long id)
     {
-        if (id <= 0)
+        var validator = new StudentIDValidator();
+        ValidationResult result = validator.Validate(id);
+        
+        if (!result.IsValid)
         {
             throw new ArgumentException("Invalid ID");
         }
@@ -41,19 +47,6 @@ public class StudentService : IStudentService
         return students.FindAll(s => s.name.Contains(name, StringComparison.OrdinalIgnoreCase));
     }
     
-    public string GetDate(string culture)
-    {
-        try
-        {
-            var currentDate = DateTime.Now.ToString(new CultureInfo(culture));
-            return currentDate;
-        }
-        catch (CultureNotFoundException)
-        {
-            throw new ArgumentException("Invalid culture identifier");
-        }
-    }
-    
     public void UpdateStudentName(Student request)
     {
         if (request.id <= 0 || string.IsNullOrEmpty(request.name) || string.IsNullOrEmpty(request.email))
@@ -67,29 +60,6 @@ public class StudentService : IStudentService
         }
         student.name = request.name;
         student.email = request.email;
-    }
-    
-    public async Task<string> UploadImage(Image image)
-    {
-        if (image == null)
-        {
-            throw new ArgumentException("Image is required.");
-        }
-        var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
-        var fileName = Path.GetFileName(image.file.FileName);
-        var filePath = Path.Combine(uploadDirectory, fileName);
-        try
-        {
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.file.CopyToAsync(stream);
-            }
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error uploading file: {fileName}. {ex.Message}");
-        }
-        return $"images/{fileName}";
     }
     
     public void DeleteStudent(long id)

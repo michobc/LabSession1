@@ -31,15 +31,6 @@ public class StudentsController : ControllerBase
     {
         return _studentService.GetFiltered(name);
     }
-
-    [HttpGet("getCurrentDate")]
-    public string GetDate()
-    {
-        var cultureHeader = HttpContext.Request.Headers["Accept-Language"].ToString();
-        // here i splited the accept-language in the header by the comma to take the first part that contains en-EN etc.
-        var culture = cultureHeader.Split(',').FirstOrDefault();
-        return _studentService.GetDate(culture);
-    }
     
     [HttpPost("update")]
     public ActionResult UpdateStudentName([FromBody] Student request)
@@ -57,13 +48,6 @@ public class StudentsController : ControllerBase
             return NotFound(e.Message);
         }
         return Ok();
-    }
-    
-
-    [HttpPost("upload")]
-    public Task<string> UploadImage([FromForm] Image image)
-    {
-        return _studentService.UploadImage(image);
     }
     
     [HttpDelete("deleteStudent/{id}")]

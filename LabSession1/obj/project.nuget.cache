@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CUaN51RifO4IXtGqvCKZ3Fkkc4AMFYGopHSj9YDWnb/BcADd7EdH9XS1lCBOQOUxvVOb3qv+rh7aSMxTuAilAA==",
+  "dgSpecHash": "AxNWC5uiV73V3/4FHU59vqOIk0dBzNcmhVdyA+t9Jvyufh3akgskaG0rDuWVvNoT80HBvY+5SF1rkgVWP2VqPw==",
   "success": true,
   "projectFilePath": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/LabSession1.csproj",
   "expectedPackageFiles": [
+    "/Users/michelbouchahine/.nuget/packages/fluentvalidation/11.9.2/fluentvalidation.11.9.2.nupkg.sha512",
     "/Users/michelbouchahine/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/michelbouchahine/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/michelbouchahine/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

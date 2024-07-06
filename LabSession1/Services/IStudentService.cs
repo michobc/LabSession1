@@ -9,10 +9,8 @@ public interface IStudentService
     List<Student> GetAll();
     Student GetByID(long id);
     List<Student> GetFiltered(string name);
-    string GetDate(string culture);
     // POST REQUESTS
     void UpdateStudentName(Student request);
-    Task<string> UploadImage(Image image);
     // DELETE
     void DeleteStudent(long id);
 }

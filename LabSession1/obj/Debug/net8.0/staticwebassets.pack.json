@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/2020-2021 GIC - Diagramme des prérequis - 20230731.pdf",
+      "PackagePath": "staticwebassets/images/2020-2021 GIC - Diagramme des prérequis - 20230731.pdf"
+    },
+    {
       "Id": "/Users/michelbouchahine/RiderProjects/LabSession1/LabSession1/wwwroot/images/FLES_1erjuillet.docx",
       "PackagePath": "staticwebassets/images/FLES_1erjuillet.docx"
     },
