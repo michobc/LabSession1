@@ -1,3 +1,4 @@
+using LabSession1.Middlewares;
 using LabSession1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseStaticFiles();
+
+// My custom middleware
+app.UseRequestLoggingMiddleware();
 
 app.MapControllers();
 
