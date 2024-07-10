@@ -6,7 +6,7 @@ namespace LabSession1.Filters;
 public class LoggingActionFilter : IActionFilter
 {
     private readonly ILogger<LoggingActionFilter> _logger;
-
+    
     public LoggingActionFilter(ILogger<LoggingActionFilter> logger)
     {
         _logger = logger;

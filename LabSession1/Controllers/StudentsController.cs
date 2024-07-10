@@ -9,9 +9,12 @@ namespace LabSession1.Controllers;
 public class StudentsController : ControllerBase
 {
     private readonly IStudentService _studentService;
-    public StudentsController(IStudentService studentService)
+    private readonly IObjectMapperService _objectMapperService;
+
+    public StudentsController(IStudentService studentService, IObjectMapperService objectMapperService)
     {
         _studentService = studentService;
+        _objectMapperService = objectMapperService;
     }
     
     [HttpGet("getAllStudents")]
@@ -66,5 +69,24 @@ public class StudentsController : ControllerBase
             return NotFound(e.Message);
         }
         return Ok();
+    }
+    
+    [HttpGet("mapStudentToPerson/{id}")]
+    public ActionResult<Person> MapStudentToPerson(long id)
+    {
+        try
+        {
+            var student = _studentService.GetByID(id);
+            var person = _objectMapperService.Map<Student, Person>(student);
+            return Ok(person);
+        }
+        catch (ArgumentException e)
+        {
+            return BadRequest(e.Message);
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 }
